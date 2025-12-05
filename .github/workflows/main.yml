@@ -1,3 +1,4 @@
+
 name: Docusaurus Deploy
 
 on:
@@ -10,17 +11,35 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      # 1️⃣ Checkout repository
       - uses: actions/checkout@v3
+
+      # 2️⃣ Setup Node.js (latest LTS)
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version: '20'
+
+      # 3️⃣ Cache Node modules (speed up workflow)
+      - name: Cache Node modules
+        uses: actions/cache@v3
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      # 4️⃣ Install dependencies (clean install)
       - name: Install dependencies
-        run: npm install
+        run: npm ci
+
+      # 5️⃣ Build Docusaurus site
       - name: Build
         run: npm run build
+
+      # 6️⃣ Deploy to GitHub Pages
       - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
+        uses: peaceiris/actions-gh-pages@v4   # <-- updated version
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./build
