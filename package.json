@@ -1,0 +1,17 @@
+{
+  "name": "my-book",
+  "version": "0.0.0",
+  "private": true,
+  "type": "commonjs",
+  "scripts": {
+    "generate-chapter1": "ts-node scripts/generateChapter1.ts"
+  },
+  "dependencies": {
+    "axios": "^1.6.7"
+  },
+  "devDependencies": {
+    "@types/node": "^24.10.1",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.3.3"
+  }
+}
