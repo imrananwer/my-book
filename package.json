@@ -2,15 +2,23 @@
   "name": "my-book",
   "version": "0.0.0",
   "private": true,
-  "type": "commonjs",
+  "type": "module",
   "scripts": {
-    "generate-chapter1": "ts-node scripts/generateChapter1.ts"
+    "generate-chapter1": "ts-node scripts/generateChapter1.ts",
+    "start": "docusaurus start",
+    "build": "docusaurus build",
+    "deploy": "docusaurus deploy"
   },
   "dependencies": {
-    "axios": "^1.6.7"
+    "@docusaurus/core": "^3.9.0",
+    "@docusaurus/preset-classic": "^3.9.0",
+    "axios": "^1.6.7",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
   },
   "devDependencies": {
     "@types/node": "^24.10.1",
+    "gh-pages": "^6.3.0",
     "ts-node": "^10.9.2",
     "typescript": "^5.3.3"
   }
